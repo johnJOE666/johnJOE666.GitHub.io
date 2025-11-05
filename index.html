@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Wireless Headphones</title>
+    <title>提交题目</title>
     <style>
         * {
             margin: 0;
@@ -12,264 +12,399 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .container {
-            max-width: 1200px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: white;
             border-radius: 20px;
-            overflow: hidden;
+            padding: 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            position: relative;
+            margin-bottom: 30px;
         }
 
-        .product-showcase {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
         }
 
-        .product-image {
-            position: absolute;
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
             width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
 
-        .product-image.active {
-            opacity: 1;
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        .product-image:nth-child(1) {
-            background-image: url('5-port-1.jpg');
+        textarea {
+            resize: vertical;
+            min-height: 150px;
         }
 
-        .product-image:nth-child(2) {
-            background-image: url('5-port-2.jpg');
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
         }
 
-        .product-image:nth-child(3) {
-            background-image: url('5-port-3.jpg');
+        .file-upload-input {
+            display: none;
         }
 
-        .product-info {
-            position: absolute;
-            bottom: 40px;
-            left: 40px;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 450px;
-            color: white;
-            animation: slideUp 0.8s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .product-info h1 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .product-info p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #e0e0e0;
-            margin-bottom: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .social-links a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        .file-upload-label {
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            color: white;
-            font-size: 24px;
+            padding: 40px;
+            border: 2px dashed #d1d5db;
+            border-radius: 10px;
+            cursor: pointer;
             transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
+            background: #f9fafb;
         }
 
-        .social-links a:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        .file-upload-label:hover {
+            border-color: #667eea;
+            background: #f3f4f6;
         }
 
-        .social-links a.email {
-            background: linear-gradient(135deg, #ea4335, #c5221f);
+        .file-upload-text {
+            color: #666;
+            font-size: 14px;
         }
 
-        .social-links a.whatsapp {
-            background: linear-gradient(135deg, #25d366, #128c7e);
-        }
-
-        .social-links a.tiktok {
-            background: linear-gradient(135deg, #000000, #ee1d52);
-        }
-
-        .social-links a.facebook {
-            background: linear-gradient(135deg, #1877f2, #0d5cb8);
-        }
-
-        .indicator-dots {
-            position: absolute;
-            bottom: 20px;
-            right: 40px;
+        .file-preview {
+            margin-top: 15px;
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
-            z-index: 10;
         }
 
-        .dot {
-            width: 12px;
-            height: 12px;
+        .preview-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #e9ecef;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .dot.active {
-            background: white;
-            width: 30px;
-            border-radius: 6px;
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
-        @media (max-width: 768px) {
-            .product-showcase {
-                height: 500px;
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .qq-footer {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .qq-footer h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .qq-group {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #12c2e9, #c471ed, #f64f59);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .qq-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 10px;
+        }
+
+        .qq-hint {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .success-message {
+            display: none;
+            padding: 15px;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 10px;
+            color: #155724;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .form-card {
+                padding: 25px;
             }
 
-            .product-info {
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
-                max-width: none;
-                padding: 20px;
-            }
-
-            .product-info h1 {
-                font-size: 1.8em;
-            }
-
-            .product-info p {
-                font-size: 1em;
-            }
-
-            .indicator-dots {
-                right: 20px;
+            h1 {
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="product-showcase">
-            <div class="product-image active"></div>
-            <div class="product-image"></div>
-            <div class="product-image"></div>
-            
-            <div class="product-info">
-                <h1>Wire Connectors</h1>
-                <p>Having been deeply involved in the field of wire connectors for many years, we have accumulated rich experience and reputation in research and development, design, production, and management. If you need connectors or OEM/ODM services, you can also contact us through the following methods.</p>
-                
-                <div class="social-links">
-                    <a href="mailto:johnftmanager@outlook.com" class="email" title="Email us">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                    </a>
-                    <a href="https://wa.me/" target="_blank" class="whatsapp" title="WhatsApp">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                        </svg>
-                    </a>
-                    <a href="https://" target="_blank" class="tiktok" title="TikTok">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
-                        </svg>
-                    </a>
-                    <a href="https://" target="_blank" class="facebook" title="Facebook">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                    </a>
-                </div>
+        <div class="form-card">
+            <h1>📝 提交您的题目</h1>
+            <p class="subtitle">填写以下信息，我们会尽快与您联系</p>
+
+            <div class="success-message" id="successMessage">
+                ✓ 提交成功！我们已收到您的需求，会尽快处理。
             </div>
 
-            <div class="indicator-dots">
-                <div class="dot active" data-index="0"></div>
-                <div class="dot" data-index="1"></div>
-                <div class="dot" data-index="2"></div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>题目标题 *</label>
+                    <input type="text" name="name" required placeholder="请输入题目标题或者关键词">
+                </div>
+
+                <div class="form-group">
+                    <label>接收作业的邮箱 *</label>
+                    <input type="email" name="email" required placeholder="example@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label>题目描述 *</label>
+                    <textarea name="message" required placeholder="请详细描述您的题目..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>上传题目图片（可选）</label>
+                    <div class="file-upload">
+                        <input type="file" id="fileInput" class="file-upload-input" accept="image/*" multiple>
+                        <label for="fileInput" class="file-upload-label">
+                            <span class="file-upload-text">📷 点击上传图片或拖拽到此处</span>
+                        </label>
+                    </div>
+                    <div class="file-preview" id="filePreview"></div>
+                </div>
+
+                <button type="submit" class="submit-button">提交需求</button>
+            </form>
+        </div>
+
+        <div class="qq-footer">
+            <h3>也可以：直接给我邮件</h3>
+            <div class="qq-group">
+                <svg class="qq-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"/>
+                    <path d="M12 6C9.79 6 8 7.79 8 10C8 11.19 8.54 12.25 9.39 12.94C8.54 13.5 8 14.44 8 15.5C8 17.16 9.34 18.5 11 18.5H13C14.66 18.5 16 17.16 16 15.5C16 14.44 15.46 13.5 14.61 12.94C15.46 12.25 16 11.19 16 10C16 7.79 14.21 6 12 6Z"/>
+                </svg>
+                johnsmachinery@outlook.com
             </div>
+            <p class="qq-hint">扫码或搜索群号加入，获取更多服务支持</p>
         </div>
     </div>
 
     <script>
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.product-image');
-        const dots = document.querySelectorAll('.dot');
-        const totalImages = images.length;
+        const fileInput = document.getElementById('fileInput');
+        const filePreview = document.getElementById('filePreview');
+        const form = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+        let selectedFiles = [];
 
-        function showImage(index) {
-            images.forEach(img => img.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+        // 处理文件选择
+        fileInput.addEventListener('change', function(e) {
+            handleFiles(e.target.files);
+        });
+
+        // 处理拖拽上传
+        const fileUploadLabel = document.querySelector('.file-upload-label');
+        fileUploadLabel.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadLabel.style.borderColor = '#667eea';
+        });
+
+        fileUploadLabel.addEventListener('dragleave', () => {
+            fileUploadLabel.style.borderColor = '#d1d5db';
+        });
+
+        fileUploadLabel.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadLabel.style.borderColor = '#d1d5db';
+            handleFiles(e.dataTransfer.files);
+        });
+
+        function handleFiles(files) {
+            for (let file of files) {
+                if (file.type.startsWith('image/')) {
+                    selectedFiles.push(file);
+                    displayPreview(file);
+                }
+            }
+        }
+
+        function displayPreview(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewItem = document.createElement('div');
+                previewItem.className = 'preview-item';
+                previewItem.innerHTML = `
+                    <img src="${e.target.result}" alt="预览">
+                    <button type="button" class="preview-remove" onclick="removeFile(this, '${file.name}')">×</button>
+                `;
+                filePreview.appendChild(previewItem);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeFile(button, fileName) {
+            selectedFiles = selectedFiles.filter(f => f.name !== fileName);
+            button.parentElement.remove();
+        }
+
+        // 处理表单提交
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            images[index].classList.add('active');
-            dots[index].classList.add('active');
-        }
-
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % totalImages;
-            showImage(currentIndex);
-        }
-
-        // Auto-rotate every 5 seconds
-        let autoRotate = setInterval(nextImage, 5000);
-
-        // Manual navigation with dots
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                clearInterval(autoRotate);
-                currentIndex = index;
-                showImage(currentIndex);
-                autoRotate = setInterval(nextImage, 5000);
+            const formData = new FormData(form);
+            
+            // 添加文件
+            selectedFiles.forEach(file => {
+                formData.append('images', file);
             });
+
+            // 这里需要配置您的邮件发送服务
+            // 例如使用 FormSubmit.co 或其他邮件API服务
+            const EMAIL_ENDPOINT = 'johnsmachinery@outlook.com'; // 替换为您的邮箱
+            
+            try {
+                // 示例：使用 FormSubmit.co 服务
+                // 需要将表单action设置为 https://formsubmit.co/your-email@example.com
+                
+                const submitButton = form.querySelector('.submit-button');
+                submitButton.disabled = true;
+                submitButton.textContent = '提交中...';
+
+                // 模拟提交（实际使用时需要配置真实的邮件服务）
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // 显示成功消息
+                successMessage.classList.add('show');
+                form.reset();
+                filePreview.innerHTML = '';
+                selectedFiles = [];
+                
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+
+                submitButton.disabled = false;
+                submitButton.textContent = '提交需求';
+                
+                console.log('表单数据:', {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    message: formData.get('message'),
+                    images: selectedFiles.length + ' 张图片'
+                });
+
+            } catch (error) {
+                alert('提交失败，请稍后重试');
+                submitButton.disabled = false;
+                submitButton.textContent = '提交需求';
+            }
         });
     </script>
 </body>
