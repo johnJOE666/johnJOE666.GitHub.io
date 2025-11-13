@@ -3,409 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>提交题目</title>
+    <title>商品主页</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
         }
-
+        
         .container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .form-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            color: #333;
-            font-size: 28px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            color: #333;
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .file-upload {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .file-upload-input {
-            display: none;
-        }
-
-        .file-upload-label {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            border: 2px dashed #d1d5db;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #f9fafb;
+            min-height: 100vh;
         }
-
-        .file-upload-label:hover {
-            border-color: #667eea;
-            background: #f3f4f6;
-        }
-
-        .file-upload-text {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .file-preview {
-            margin-top: 15px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .preview-item {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid #e9ecef;
-        }
-
-        .preview-item img {
-            width: 100%;
+        
+        /* 左侧企业信息面板 */
+        .sidebar {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            position: fixed;
             height: 100%;
-            object-fit: cover;
+            left: -260px;
+            transition: left 0.3s ease;
+            z-index: 100;
+            overflow-y: auto;
         }
-
-        .preview-remove {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
+        .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+      /*  .sidebar:hover {
+            left: 0;
+        }*/
+        
+        .sidebar h2 {
+            margin-bottom: 20px;
+            color: #444;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        .contact-info a {
+            color: #555;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            margin-left: 320px; /* 为悬停面板留出空间 原来40*/
+        }
+        
+        .page-title {
+            margin-bottom: 30px;
+            color: #444;
+            text-align: center;
+        }
+        
+        /* 商品展示区 */
+        .product-section {
+            background-color: #fff;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-image {
+            width: 200px;
+            height: 150px;
+            background-color: #f0f0f0;
+            margin-right: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            border: 1px solid #ddd;
         }
-
-        .submit-button {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
-
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        
+        .product-info {
+            flex: 1;
         }
-
-        .submit-button:active {
-            transform: translateY(0);
-        }
-
-        .submit-button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .qq-footer {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-
-        .qq-footer h3 {
+        
+        .product-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
             color: #333;
-            font-size: 18px;
-            margin-bottom: 15px;
         }
-
-        .qq-group {
-            display: inline-flex;
-            align-items: center;
-            background: linear-gradient(135deg, #12c2e9, #c471ed, #f64f59);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 20px;
-            font-weight: 600;
+        
+        .product-description {
+            color: #666;
             margin-bottom: 10px;
         }
-
-        .qq-icon {
-            width: 28px;
-            height: 28px;
-            margin-right: 10px;
+        
+        .product-price {
+            font-weight: bold;
+            color: #444;
         }
-
-        .qq-hint {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .success-message {
-            display: none;
-            padding: 15px;
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 10px;
-            color: #155724;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        @media (max-width: 600px) {
-            .form-card {
-                padding: 25px;
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
             }
-
-            h1 {
-                font-size: 24px;
+            
+            .sidebar {
+                position: relative;
+                width: 100%;
+                left: 0;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .product-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .product-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="form-card">
-            <h1>📝 提交您的题目</h1>
-            <p class="subtitle">填写以下信息，我们会尽快与您联系</p>
-
-            <div class="success-message" id="successMessage">
-                ✓ 提交成功！我们已收到您的需求，会尽快处理。
+        <!-- 左侧企业信息面板 -->
+        <aside class="sidebar">
+            <h2>            O.C                  </h2>
+            <h2>关于我们/About us</h2>
+        
+            <p>我们专注于提供高质量产品，致力于为客户提供最好的产品和最优质的服务。</p>
+            <p>We focus on providing high-quality products and are committed to providing our customers with the best products and services.</p>
+            <p>我们始终坚持以客户为中心，不断创新和改进我们的产品线，以满足不断变化的市场需求。</p>
+            <p>We always adhere to a customer-centric approach and continuously innovate and improve our product lines to meet ever-changing market demands.</p>
+            
+            <div class="contact-info">
+                <h2>联系我们/Contact us</h2>
+                <p><strong>邮箱/E-mail:</strong> <a href="mailto:johnsmachinery@outlook.com">johnsmachinery@outlook.com</a></p>
+                <p><strong>WhatsApp:</strong> <a href="https://wa.me/0015033176177">+1 503 317 6177</a></p>
             </div>
-
-            <form id="contactForm">
-                <div class="form-group">
-                    <label>题目标题 *</label>
-                    <input type="text" name="name" required placeholder="请输入题目标题或者关键词">
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <h1 class="page-title">我们的产品/Product</h1>
+            
+            <!-- 商品1 -->
+            <section class="product-section">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x150" alt="产品1">
                 </div>
-
-                <div class="form-group">
-                    <label>接收作业的邮箱 *</label>
-                    <input type="email" name="email" required placeholder="example@email.com">
+                <div class="product-info">
+                    <h3 class="product-title">MB2镁合金线材/MB2 Magnesium Alloy Wire</h3>
+                    <p class="product-description">MB2镁合金线材,可根据你的需要定制不同的线径。</p>
+                    <p class="product-description">MB2 magnesium alloy wire, different wire diameters can be customized according to your needs.</p>
+                    <p class="product-price">product price：2,800 CNY / Kg</p>
                 </div>
-
-                <div class="form-group">
-                    <label>题目描述 *</label>
-                    <textarea name="message" required placeholder="请详细描述您的题目..."></textarea>
+            </section>
+            
+            <!-- 商品2 -->
+            <section class="product-section">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x150" alt="产品2">
                 </div>
-
-                <div class="form-group">
-                    <label>上传题目图片（可选）</label>
-                    <div class="file-upload">
-                        <input type="file" id="fileInput" class="file-upload-input" accept="image/*" multiple>
-                        <label for="fileInput" class="file-upload-label">
-                            <span class="file-upload-text">📷 点击上传图片或拖拽到此处</span>
-                        </label>
-                    </div>
-                    <div class="file-preview" id="filePreview"></div>
+                <div class="product-info">
+                    <h3 class="product-title">简约书桌</h3>
+                    <p class="product-description">采用优质木材制作的简约风格书桌，结构稳固，设计简洁大方。</p>
+                    <p class="product-price">¥ 1,299</p>
                 </div>
+            </section>
+            
+            <!-- 商品3 -->
+            <section class="product-section">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x150" alt="产品3">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">多功能置物架</h3>
+                    <p class="product-description">模块化设计的置物架，可根据需要自由组合，适用于各种空间。</p>
+                    <p class="product-price">¥ 599</p>
+                </div>
+            </section>
+            
+            <!-- 商品4 -->
+            <section class="product-section">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x150" alt="产品4">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">LED台灯</h3>
+                    <p class="product-description">节能环保的LED台灯，提供柔和光线，保护视力，适合阅读和工作。</p>
+                    <p class="product-price">¥ 259</p>
+                </div>
+            </section>
+            
+            <!-- 商品5 -->
+            <section class="product-section">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x150" alt="产品5">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">文件柜</h3>
+                    <p class="product-description">三层抽屉式文件柜，有效整理和存储文件，保持办公环境整洁。</p>
+                    <p class="product-price">¥ 799</p>
+                </div>
+            </section>
+                       <!-- 商品6 -->
+            <section class="product-section">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x150" alt="产品6">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">经典办公椅</h3>
+                    <p class="product-description">符合人体工程学设计的办公椅，提供全天候舒适支撑，适合长时间办公使用。</p>
+                    <p class="product-price">¥ 899</p>
 
-                <button type="submit" class="submit-button">提交需求</button>
-            </form>
-        </div>
-
-        <div class="qq-footer">
-            <h3>也可以：直接给我邮件</h3>
-            <div class="qq-group">
-                <svg class="qq-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"/>
-                    <path d="M12 6C9.79 6 8 7.79 8 10C8 11.19 8.54 12.25 9.39 12.94C8.54 13.5 8 14.44 8 15.5C8 17.16 9.34 18.5 11 18.5H13C14.66 18.5 16 17.16 16 15.5C16 14.44 15.46 13.5 14.61 12.94C15.46 12.25 16 11.19 16 10C16 7.79 14.21 6 12 6Z"/>
-                </svg>
-                johnsmachinery@outlook.com
-            </div>
-            <p class="qq-hint">扫码或搜索群号加入，获取更多服务支持</p>
-        </div>
+                </div>
+            </section>
+        </main>
     </div>
-
-    <script>
-        const fileInput = document.getElementById('fileInput');
-        const filePreview = document.getElementById('filePreview');
-        const form = document.getElementById('contactForm');
-        const successMessage = document.getElementById('successMessage');
-        let selectedFiles = [];
-
-        // 处理文件选择
-        fileInput.addEventListener('change', function(e) {
-            handleFiles(e.target.files);
-        });
-
-        // 处理拖拽上传
-        const fileUploadLabel = document.querySelector('.file-upload-label');
-        fileUploadLabel.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileUploadLabel.style.borderColor = '#667eea';
-        });
-
-        fileUploadLabel.addEventListener('dragleave', () => {
-            fileUploadLabel.style.borderColor = '#d1d5db';
-        });
-
-        fileUploadLabel.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileUploadLabel.style.borderColor = '#d1d5db';
-            handleFiles(e.dataTransfer.files);
-        });
-
-        function handleFiles(files) {
-            for (let file of files) {
-                if (file.type.startsWith('image/')) {
-                    selectedFiles.push(file);
-                    displayPreview(file);
-                }
-            }
-        }
-
-        function displayPreview(file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const previewItem = document.createElement('div');
-                previewItem.className = 'preview-item';
-                previewItem.innerHTML = `
-                    <img src="${e.target.result}" alt="预览">
-                    <button type="button" class="preview-remove" onclick="removeFile(this, '${file.name}')">×</button>
-                `;
-                filePreview.appendChild(previewItem);
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function removeFile(button, fileName) {
-            selectedFiles = selectedFiles.filter(f => f.name !== fileName);
-            button.parentElement.remove();
-        }
-
-        // 处理表单提交
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(form);
-            
-            // 添加文件
-            selectedFiles.forEach(file => {
-                formData.append('images', file);
-            });
-
-            // 这里需要配置您的邮件发送服务
-            // 例如使用 FormSubmit.co 或其他邮件API服务
-            const EMAIL_ENDPOINT = 'johnsmachinery@outlook.com'; // 替换为您的邮箱
-            
-            try {
-                // 示例：使用 FormSubmit.co 服务
-                // 需要将表单action设置为 https://formsubmit.co/your-email@example.com
-                
-                const submitButton = form.querySelector('.submit-button');
-                submitButton.disabled = true;
-                submitButton.textContent = '提交中...';
-
-                // 模拟提交（实际使用时需要配置真实的邮件服务）
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                // 显示成功消息
-                successMessage.classList.add('show');
-                form.reset();
-                filePreview.innerHTML = '';
-                selectedFiles = [];
-                
-                setTimeout(() => {
-                    successMessage.classList.remove('show');
-                }, 5000);
-
-                submitButton.disabled = false;
-                submitButton.textContent = '提交需求';
-                
-                console.log('表单数据:', {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    message: formData.get('message'),
-                    images: selectedFiles.length + ' 张图片'
-                });
-
-            } catch (error) {
-                alert('提交失败，请稍后重试');
-                submitButton.disabled = false;
-                submitButton.textContent = '提交需求';
-            }
-        });
-    </script>
 </body>
 </html>
